@@ -138,14 +138,34 @@ public String capitalizeWords(String s) {
 - **병합 정렬 항상 O(N log N)**: 반으로 계속 쪼갠 뒤 정렬된 두 조각을 합침.
   `Arrays.sort(Integer[])` 등 객체 배열이 이 계열(안정 정렬).
 
+### 버블 정렬 동작 원리 (외우는 법)
+
+핵심 문장: **"옆자리랑 비교해서 큰 놈을 뒤로 보낸다. 한 바퀴(pass) 돌면 제일 큰 값이 맨 뒤에 확정된다."**
+
+`{5, 3, 8, 1, 2}`로 pass 1을 손으로 따라가 보면:
+
+```
+[5,3,8,1,2]  5>3 스왑 → [3,5,8,1,2]
+[3,5,8,1,2]  5<8 그대로
+[3,5,8,1,2]  8>1 스왑 → [3,5,1,8,2]
+[3,5,1,8,2]  8>2 스왑 → [3,5,1,2,8]   ← 8이 맨 뒤 확정!
+```
+
+pass 2가 끝나면 5가 뒤에서 두 번째에 확정… 이런 식으로 **pass가 끝날 때마다
+뒤쪽부터 하나씩 자리가 확정**된다. 그래서:
+
+- 바깥 루프 `i`: "지금까지 확정된 개수" → n-1번 돌면 끝 (마지막 1개는 저절로 확정)
+- 안쪽 루프 `j`: `n - 1 - i`까지만 → **이미 확정된 뒤쪽 i개는 다시 볼 필요 없다**
+- 비교는 항상 `arr[j]`와 `arr[j+1]` (옆자리끼리)
+
 ```java
-// 버블 정렬 직접 구현
+// 버블 정렬 템플릿 — 이 형태 그대로 외우기
 static void bubbleSort(int[] arr) {
     int n = arr.length;
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
+    for (int i = 0; i < n - 1; i++) {           // pass 횟수: n-1번
+        for (int j = 0; j < n - 1 - i; j++) {   // 확정된 뒤쪽 i개 제외
+            if (arr[j] > arr[j + 1]) {          // 왼쪽이 크면
+                int temp = arr[j];              // 스왑 3줄 (temp 경유)
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
@@ -154,29 +174,69 @@ static void bubbleSort(int[] arr) {
 }
 ```
 
-**실습: 버블 정렬을 직접 구현하고 Arrays.sort() 결과와 비교해보기**
+**자주 하는 실수:**
+- 안쪽 루프를 `j < n - 1`로 고정 → 틀리진 않지만 확정된 구간을 계속 다시 비교 (비효율)
+- 안쪽 루프를 `j < n - i`로 쓰면 `arr[j+1]`이 배열 밖 → `ArrayIndexOutOfBoundsException`
+- `arr[j] >= arr[j+1]`로 쓰면 같은 값도 스왑 → 결과는 맞지만 불필요한 스왑 (불안정 정렬화)
+
+**조기 종료 최적화:** 한 pass에서 스왑이 한 번도 없었다 = 이미 정렬 끝.
+```java
+boolean swapped = false;    // pass 시작할 때 false
+// ... 스왑할 때 swapped = true;
+if (!swapped) break;        // pass 끝나고 체크
+```
+이미 정렬된 배열이면 O(N) 한 번만 돌고 끝난다 (최선 O(N), 최악은 여전히 O(N²)).
+
+**실습: intro-03-버블정렬.java 를 안 보고 구현해서 Arrays.sort() 결과와 비교**
 
 ---
 
 ## 5. 이분탐색 O(log N)
 
-정렬된 배열에서 절반씩 범위를 줄여가며 탐색. 전제조건: 배열이 정렬되어 있어야 함.
+**전제조건: 배열이 정렬되어 있어야 함** (이거 없으면 이분탐색 자체가 성립 안 됨).
+
+핵심 문장: **"가운데를 찍고, 답이 있을 수 없는 절반을 통째로 버린다."**
+범위가 매번 반으로 줄어드니 N=100만이어도 20번이면 끝난다 (log₂ 1,000,000 ≈ 20).
+
+`{1, 3, 5, 7, 9, 11}`에서 target=9를 손으로 따라가 보면:
+
+```
+left=0, right=5 → mid=2, arr[2]=5 < 9  → 왼쪽 절반 버림, left=mid+1=3
+left=3, right=5 → mid=4, arr[4]=9 == 9 → 찾음! return 4
+```
+
+target=4(없는 값)이면:
+```
+left=0, right=5 → mid=2, arr[2]=5 > 4 → right=1
+left=0, right=1 → mid=0, arr[0]=1 < 4 → left=1
+left=1, right=1 → mid=1, arr[1]=3 < 4 → left=2
+left=2 > right=1 → while 종료 → return -1
+```
 
 ```java
+// 이분탐색 템플릿 — 이 형태 그대로 외우기
 static int binarySearch(int[] arr, int target) {
-    int left = 0, right = arr.length - 1;
-    while (left <= right) {
+    int left = 0, right = arr.length - 1;      // 양 끝 인덱스 (닫힌 구간)
+    while (left <= right) {                    // 등호 필수! 원소 1개 남았을 때도 검사
         int mid = (left + right) / 2;
-        if (arr[mid] == target) return mid;
-        else if (arr[mid] < target) left = mid + 1;
-        else right = mid - 1;
+        if (arr[mid] == target) return mid;    // 찾음
+        else if (arr[mid] < target) left = mid + 1;   // 답은 오른쪽에 → 왼쪽 버림
+        else right = mid - 1;                  // 답은 왼쪽에 → 오른쪽 버림
     }
-    return -1;
+    return -1;                                 // 범위가 뒤집히면 없는 것
 }
 ```
-자바에서는 `Arrays.binarySearch(arr, target)`로 이미 구현되어 있음.
 
-**실습: 직접 구현한 binarySearch와 Arrays.binarySearch() 결과 비교해보기**
+**외울 포인트 3가지 (여기서 다 틀린다):**
+1. `while (left <= right)` — `<`로 쓰면 원소 1개 남은 경우를 검사 못 하고 놓침
+2. `left = mid + 1`, `right = mid - 1` — `mid`를 범위에 남겨두면 (`left = mid`)
+   원소 2개 남았을 때 mid가 제자리걸음 → **무한루프**
+3. mid 계산: `(left + right) / 2`는 left+right가 int 범위를 넘으면 오버플로.
+   코테 수준에선 거의 안 터지지만 안전하게는 `left + (right - left) / 2`
+
+자바 내장: `Arrays.binarySearch(arr, target)` (없으면 음수 반환).
+
+**실습: intro-04-이분탐색.java 를 안 보고 구현 — 특히 빈 배열, 맨 앞/맨 뒤 케이스 확인**
 
 ---
 
