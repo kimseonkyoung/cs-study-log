@@ -1,4 +1,17 @@
-# Week 1 — 프로그래머스 문제풀이
+# Week 1 — 인트로 연습 + 프로그래머스 문제풀이
+
+## 회사용 인트로 연습문제 (폐쇄망 — 문제 미리 봐두고 풀어오기)
+
+notes.md 개념을 코드로 확인하는 대표 문제 4개. 회사에서 풀고 코드를 가져오면
+각 파일의 main 테스트 케이스로 검증한다. 통과하면 파일에 반영 후 커밋+푸시,
+틀리면 다시 풀기.
+
+- [ ] `intro-01-문자열뒤집기.java` — StringBuilder append, `reverse()` 금지
+- [ ] `intro-02-단어별첫글자대문자.java` — split / substring / StringBuilder
+- [ ] `intro-03-버블정렬.java` — 제자리 정렬, `Arrays.sort()` 금지
+- [ ] `intro-04-이분탐색.java` — left / right / mid 직접 구현
+
+## 프로그래머스 문제풀이 (집)
 
 `notes.md`에서 정리한 개념을 바탕으로 실제로 푼 문제를 여기에 파일 하나씩 쌓는다.
 
