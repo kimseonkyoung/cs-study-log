@@ -29,6 +29,7 @@ cs-study-log/
 └── 01-java-coding-test/
     ├── curriculum.md                  ← 전체 일정 & 강의-주차 매핑
     ├── review-checkpoints.md          ← 섹션 2개마다 하는 복습 체크포인트 로그
+    ├── practice/                      ← 템플릿 암기 연습장 (연습 코드는 커밋 안 됨)
     ├── 00-intro/                      ← 시간복잡도, StringBuilder 등 기초 (완료)
     ├── 02-string/
     ├── 03-array/
