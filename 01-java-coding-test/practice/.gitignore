@@ -1,0 +1,4 @@
+# 연습 코드는 커밋하지 않는다 — README만 남김
+*
+!.gitignore
+!README.md
