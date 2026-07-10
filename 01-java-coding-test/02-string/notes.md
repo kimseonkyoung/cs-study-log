@@ -23,7 +23,9 @@
 
 **강의 1~2 (문자 찾기, 대소문자 변환) 듣고:**
 - [ ] 문자열 다루기 기본 (lv1) — https://school.programmers.co.kr/learn/courses/30/lessons/12918
-- [ ] 문자열 내림차순으로 배치하기 (lv1)
+- [ ] 서울에서 김서방 찾기 (lv1) — https://school.programmers.co.kr/learn/courses/30/lessons/12919 (indexOf 연습)
+- [ ] 문자열 내림차순으로 배치하기 (lv1) — https://school.programmers.co.kr/learn/courses/30/lessons/12917 (정렬 + 아스키 대소문자 순서)
+- [ ] 시저 암호 (lv1) — https://school.programmers.co.kr/learn/courses/30/lessons/12926 (대소문자 구분 변환 + 순환, 함정 많음)
 
 **강의 3~5 (문장 속 단어, 단어 뒤집기, 특정 문자 뒤집기) 듣고:**
 - [ ] 이상한 문자 만들기 (lv1)
