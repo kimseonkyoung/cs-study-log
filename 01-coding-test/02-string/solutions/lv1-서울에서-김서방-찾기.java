@@ -12,14 +12,14 @@
  *
  * 실행 방법: java lv1-서울에서-김서방-찾기.java
  */
-class Solution {
+class SeoulKim {
     public String solution(String[] seoul) {
         // TODO: 여기에 풀이 작성
         return "";
     }
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        SeoulKim sol = new SeoulKim();
         System.out.println(sol.solution(new String[]{"Jane", "Kim"}) + " | 기대값: 김서방은 1에 있다");
         System.out.println(sol.solution(new String[]{"Kim", "Jane", "Tom"}) + " | 기대값: 김서방은 0에 있다");
         System.out.println(sol.solution(new String[]{"Queen", "Tod", "Kim"}) + " | 기대값: 김서방은 2에 있다");

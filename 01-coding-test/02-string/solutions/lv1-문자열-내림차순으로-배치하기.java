@@ -12,14 +12,14 @@
  *
  * 실행 방법: java lv1-문자열-내림차순으로-배치하기.java
  */
-class Solution {
+class DescSort {
     public String solution(String s) {
         // TODO: 여기에 풀이 작성
         return "";
     }
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        DescSort sol = new DescSort();
         System.out.println(sol.solution("Zbcdefg") + " | 기대값: gfedcbZ");
         System.out.println(sol.solution("abcZA") + " | 기대값: cbaZA");
     }

@@ -15,14 +15,14 @@
  *
  * 실행 방법: java lv1-시저-암호.java
  */
-class Solution {
+class CaesarCipher {
     public String solution(String s, int n) {
         // TODO: 여기에 풀이 작성
         return "";
     }
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        CaesarCipher sol = new CaesarCipher();
         System.out.println(sol.solution("AB", 1) + " | 기대값: BC");
         System.out.println(sol.solution("z", 1) + " | 기대값: a");
         System.out.println(sol.solution("a B z", 4) + " | 기대값: e F d");

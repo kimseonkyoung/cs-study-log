@@ -11,14 +11,14 @@
  *
  * 실행 방법: java lv1-문자열-다루기-기본.java
  */
-class Solution {
+class StringBasic {
     public boolean solution(String s) {
         // TODO: 여기에 풀이 작성
         return false;
     }
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        StringBasic sol = new StringBasic();
         System.out.println(sol.solution("1234") + " | 기대값: true");
         System.out.println(sol.solution("a234") + " | 기대값: false");
         System.out.println(sol.solution("123456") + " | 기대값: true");
