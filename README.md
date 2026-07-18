@@ -1,13 +1,12 @@
 # cs-study-log
 
-자바와 CS 기초를 꾸준히 다지기 위한 개인 학습 기록.
-코딩테스트(자바) → CS 이론(OS·네트워크·DB) → 자바 심화·스프링 순으로 확장한다.
+자바 코딩테스트와 CS 기초를 꾸준히 다지기 위한 개인 학습 기록.
+코딩테스트(자바)를 한 바퀴 돌린 뒤 CS 이론(OS·네트워크·DB)으로 확장한다.
 
 ## 로드맵
 
 1. **01-coding-test** — 자바 코딩테스트 (강의 섹션 2~11) — 진행 중
 2. **02-cs** — 운영체제, 네트워크, 데이터베이스 — 예정
-3. **03-java-spring** — 자바 심화 문법, 스프링 — 예정
 
 순서는 번호를 따르되, 주차 데드라인이 아니라 **완료 기준**으로 진행한다 (기간 고정 아님).
 
@@ -21,12 +20,17 @@
 
 섹션 순서는 [`01-coding-test/curriculum.md`](01-coding-test/curriculum.md) 참고.
 
-## IDE 설정 (IntelliJ, 기기마다 1회)
+## 실행 방법
 
-- Sources Root는 `03-java-spring/java` **하나만** 지정한다 (우클릭 → Mark Directory as → Sources Root).
-- 레포 루트가 Sources Root로 잡혀 있으면 `01-coding-test` 하위 파일에서
-  "invalid package name" 에러가 뜬다 — 루트는 Unmark 할 것.
-- `01-coding-test`의 풀이 파일은 터미널에서 `java 파일명.java`로 실행한다 (단일 파일 실행).
+풀이 파일은 빌드 도구 없이 단일 파일로 실행한다 (JDK 11+):
+
+```
+cd 01-coding-test/02-string/solutions
+java lv1-문자열-다루기-기본.java
+```
+
+IDE 참고: 이 레포는 소스 루트(Sources Root) 지정이 필요 없다. 레포 루트가
+Sources Root로 잡히면 "invalid package name" 에러가 뜨므로 Unmark 할 것.
 
 ## 구조
 
@@ -41,11 +45,8 @@ cs-study-log/
 │   ├── 00-intro/                      ← 시간복잡도, StringBuilder 등 기초
 │   └── 02-string/ ~ 11-dp/            ← 강의 섹션별 폴더
 │       (각 폴더: notes.md 강의체크리스트+개념정리, solutions/ 문제풀이)
-├── 02-cs/                             ← CS 이론 트랙
-│   ├── os/
-│   ├── network/
-│   └── database/
-└── 03-java-spring/                    ← 자바 심화·스프링 트랙
-    ├── java/
-    └── spring/
+└── 02-cs/                             ← CS 이론 트랙
+    ├── os/
+    ├── network/
+    └── database/
 ```
