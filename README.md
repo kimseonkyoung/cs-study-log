@@ -21,6 +21,13 @@
 
 섹션 순서는 [`01-coding-test/curriculum.md`](01-coding-test/curriculum.md) 참고.
 
+## IDE 설정 (IntelliJ, 기기마다 1회)
+
+- Sources Root는 `03-java-spring/java` **하나만** 지정한다 (우클릭 → Mark Directory as → Sources Root).
+- 레포 루트가 Sources Root로 잡혀 있으면 `01-coding-test` 하위 파일에서
+  "invalid package name" 에러가 뜬다 — 루트는 Unmark 할 것.
+- `01-coding-test`의 풀이 파일은 터미널에서 `java 파일명.java`로 실행한다 (단일 파일 실행).
+
 ## 구조
 
 ```
